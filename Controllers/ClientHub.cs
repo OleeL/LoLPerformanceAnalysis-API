@@ -19,7 +19,7 @@ namespace LoLPerformanceAnalysisAPI.Controllers
 
         }
 
-        public string HelloWorld() => "Hello World! Oli";
+        public string GetSummonerName(string summonerName, string serverRegion) => "API has received "+summonerName+" from "+serverRegion;
 
     }
 }

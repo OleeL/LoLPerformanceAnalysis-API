@@ -22,7 +22,7 @@ namespace LoLPerformanceAnalysisAPI
         public IConfiguration Configuration { get; }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        // Test commit
+
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -37,12 +37,18 @@ namespace LoLPerformanceAnalysisAPI
             services.AddCors(options => options.AddPolicy("CorsPolicy", 
             builder => 
             {
-                builder.AllowAnyMethod().AllowAnyHeader()
-                       .WithOrigins("http://localhost:5001")
+                builder.AllowAnyMethod()
+                       .AllowAnyHeader()
+                       .WithOrigins("http://localhost:3000")
                        .AllowCredentials();
             }));
 
-            services.AddSignalR();
+            services.AddControllers();
+            services.AddSignalR(hubOptions =>
+            {
+                hubOptions.EnableDetailedErrors = true;
+                hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(1);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,13 +64,17 @@ namespace LoLPerformanceAnalysisAPI
                 app.UseHsts();
             }
 
+            
+            app.UseRouting();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseCors("CorsPolicy");
-            app.UseSignalR(routes => 
+            
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapHub<ClientHub>("/ClientHub");
+                endpoints.MapHub<ClientHub>("/ClientHub");
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
             // app.UseMvc();
         }
