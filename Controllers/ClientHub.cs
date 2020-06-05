@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.SignalR;
+using LoLPerformanceAnalysisAPI.Models;
 
 namespace LoLPerformanceAnalysisAPI.Controllers
 {
@@ -14,12 +15,10 @@ namespace LoLPerformanceAnalysisAPI.Controllers
 
     public class ClientHub : Hub<IClientHub>
     {
-        public ClientHub()
-        {
-
-        }
 
         public string GetSummonerName(string summonerName, string serverRegion) => "API has received "+summonerName+" from "+serverRegion;
+    
+        public async Task<string> GetChampionRotations(string platform) => await Requests.GetChampionRotations(platform);
 
     }
 }

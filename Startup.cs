@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LoLPerformanceAnalysisAPI.Controllers;
+using LoLPerformanceAnalysisAPI.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,6 +18,7 @@ namespace LoLPerformanceAnalysisAPI
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            HttpGet.setAPIKey(Configuration.GetValue<string>("API_KEY", "NO_API_KEY_GIVEN"));
         }
 
         public IConfiguration Configuration { get; }

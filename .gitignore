@@ -3,3 +3,5 @@
 /obj
 apikey.txt
 Dockerfile
+appsettings.Development.json
+appsettings.json

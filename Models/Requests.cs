@@ -1,17 +1,17 @@
-using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 using static LoLPerformanceAnalysisAPI.Models.Routing;
+using System.Configuration;
 
 namespace LoLPerformanceAnalysisAPI.Models
 {
+
     public class Requests 
     {
-        
+        public static HttpGet Request = new HttpGet();
+    
+        public static async Task<string> GetChampionRotations(string platform) => await Request.SendAsync("/lol/platform/v3/champion-rotations", platform);
 
-        public static string GetChampionRotations() {
-            SendAsync("/lol/platform/v3/champion-rotations");
-        }
+        public string GetSummonerId(string summonerName) => "";
     }
 
 }

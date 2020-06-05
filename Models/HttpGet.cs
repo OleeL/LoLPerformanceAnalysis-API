@@ -11,28 +11,40 @@ namespace LoLPerformanceAnalysisAPI.Models
         static readonly HttpClient client = new HttpClient();
         private static string API_KEY;
 
+        public static void setAPIKey(string key) => API_KEY = key;
+
         private const string API_URL = "api.riotgames.com";
 
-        public HttpGet (string API_KEY) => HttpGet.API_KEY = "?api_key="+API_KEY;
+        private const string API_URL_PREFIX = "?api_key=";
+        
+        private const string HTTPS = "https://";
 
-        public async Task<string> SendAsync(string request, Platform platform)
+        public async Task<string> SendAsync(string request, string platform)
         {
             var responseBody = "";
-            var route = Routing.PlatformToString(platform);
 
             try	
             {
-                var response = await client.GetAsync(route + API_URL + request + API_KEY);
+                var url = HTTPS +
+                          platform + 
+                          "." +
+                          API_URL + 
+                          request + 
+                          API_URL_PREFIX +
+                          API_KEY;
+                          
+                var response = await client.GetAsync(url);
                 response.EnsureSuccessStatusCode(); 
                 responseBody = await response.Content.ReadAsStringAsync();
 
-                Console.WriteLine(responseBody);
+                // Console.WriteLine(responseBody);
             }
             catch(HttpRequestException e)
             {
                 Console.WriteLine("\nException Caught!");	
                 Console.WriteLine("Message :{0} ",e.Message);
             }
+            Console.WriteLine(responseBody);
             return responseBody;
         }
     }

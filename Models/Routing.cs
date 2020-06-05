@@ -39,18 +39,18 @@ namespace LoLPerformanceAnalysisAPI.Models
 
         public static string PlatformToString(Platform platform) => platform switch 
         {
-            Platform.BR => "br",
-            Platform.EUN => "eun",
-            Platform.EUW => "euw",
-            Platform.JP => "jp",
-            Platform.KR => "kr",
+            Platform.BR => "br1",
+            Platform.EUN => "eun1",
+            Platform.EUW => "euw1",
+            Platform.JP => "jp1",
+            Platform.KR => "kr1",
             Platform.LA1 => "la1",
             Platform.LA2 => "la2",
-            Platform.NA => "na",
-            Platform.OC => "oc",
-            Platform.TR => "tr",
-            Platform.RU => "ru",
-            _ => "euw"
+            Platform.NA => "na1",
+            Platform.OC => "oc1",
+            Platform.TR => "tr1",
+            Platform.RU => "ru1",
+            _ => "euw1"
         };
 
         public enum Regions {
