@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿
+using System;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.SignalR;
 using LoLPerformanceAnalysisAPI.Models;
 
@@ -13,12 +12,26 @@ namespace LoLPerformanceAnalysisAPI.Controllers
         Task UpdateGameInfo(string user, string message);
     }
 
+
     public class ClientHub : Hub<IClientHub>
     {
+        public Requests requests = new Requests();
 
-        public string GetSummonerName(string summonerName, string serverRegion) => "API has received "+summonerName+" from "+serverRegion;
+        public override async Task OnConnectedAsync() =>
+            await base.OnConnectedAsync();
+
+        public override async Task OnDisconnectedAsync(Exception exception) =>
+            await base.OnDisconnectedAsync(exception);
+
+        public async Task<string> GetSummonerName(string summonerName, string serverRegion) =>
+            await requests.GetSummonerId(summonerName, serverRegion);
+
+        public async Task<string> GetChampionDetails(string champion) =>
+            await requests.GetChampion(champion);
     
-        public async Task<string> GetChampionRotations(string platform) => await Requests.GetChampionRotations(platform);
+        public async Task<string> GetChampionRotations(string platform) =>
+            await requests.GetChampionRotations(platform);
 
+        
     }
 }

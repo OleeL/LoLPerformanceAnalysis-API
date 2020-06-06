@@ -6,7 +6,8 @@ namespace LoLPerformanceAnalysisAPI.Models
 {
     public class Routing 
     {
-        public enum Platform {
+        public enum Platform
+        {
             BR,
             EUN,
             EUW,
@@ -23,18 +24,33 @@ namespace LoLPerformanceAnalysisAPI.Models
         // Returns EUW if the platform is unrecognised
         public static Platform StringToPlatform(string platform) => platform.ToLower() switch
         {
-            "br" => Platform.BR,
-            "eun" => Platform.EUN,
-            "euw" => Platform.EUW,
-            "jp" => Platform.JP,
-            "kr" => Platform.KR,
+            "br1" => Platform.BR,
+            "eun1" => Platform.EUN,
+            "euw1" => Platform.EUW,
+            "jp1" => Platform.JP,
+            "kr1" => Platform.KR,
             "la1" => Platform.LA1,
             "la2" => Platform.LA2,
-            "na" => Platform.NA,
-            "oc" => Platform.OC,
-            "tr" => Platform.TR,
-            "ru" => Platform.RU,
+            "na1" => Platform.NA,
+            "oc1" => Platform.OC,
+            "tr1" => Platform.TR,
+            "ru1" => Platform.RU,
             _ => Platform.EUW
+        };
+
+        // Returns EUW if the platform is unrecognised
+        public static string ClientPlatformToPlatform(string platform) => platform.ToLower() switch
+        {
+            "br" => "br1",
+            "eun" => "eun1",
+            "euw" => "euw1",
+            "jp" => "jp1",
+            "kr" => "kr1",
+            "na" => "na1",
+            "oc" => "oc1",
+            "tr" => "tr1",
+            "ru" => "ru1",
+            _ => platform.ToLower()
         };
 
         public static string PlatformToString(Platform platform) => platform switch 
@@ -53,7 +69,8 @@ namespace LoLPerformanceAnalysisAPI.Models
             _ => "euw1"
         };
 
-        public enum Regions {
+        public enum Regions
+        {
             AMERICA,
             ASIA,
             EUROPE
