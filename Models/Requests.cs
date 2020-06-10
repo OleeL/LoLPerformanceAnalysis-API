@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace LoLPerformanceAnalysisAPI.Models
 {
 
-    public class Requests 
+    public class LoLRequest
     {
         public HttpGet Request = new HttpGet();
 
@@ -15,7 +15,7 @@ namespace LoLPerformanceAnalysisAPI.Models
 
         public string LatestVersion = "10.11.1";
 
-        public Requests() => Task.WhenAll(UpdateVersion());
+        public LoLRequest() => Task.WhenAll(UpdateVersion());
 
         public async Task UpdateVersion()
         {

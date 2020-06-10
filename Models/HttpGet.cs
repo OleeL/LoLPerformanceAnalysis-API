@@ -29,15 +29,11 @@ namespace LoLPerformanceAnalysisAPI.Models
             var url = HTTPS + platform + "." + API_URL + request;
             try	
             {
-
                 var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
                 requestMessage.Headers.Add("X-Riot-Token", ApiKey);
-
                 var response = await Client.SendAsync(requestMessage);
                 response.EnsureSuccessStatusCode(); 
                 responseBody = await response.Content.ReadAsStringAsync();
-
-                // Console.WriteLine(responseBody);
             }
             catch(HttpRequestException e)
             {
