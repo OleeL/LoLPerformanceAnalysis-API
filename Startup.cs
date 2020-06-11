@@ -34,7 +34,7 @@ namespace LoLPerformanceAnalysisAPI
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddMvc();
+            // services.AddMvc();
 
             services.AddCors(options => options.AddPolicy("CorsPolicy", 
             builder => 
@@ -46,11 +46,7 @@ namespace LoLPerformanceAnalysisAPI
             }));
 
             services.AddControllers();
-            services.AddSignalR(hubOptions =>
-            {
-                hubOptions.EnableDetailedErrors = true;
-                hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(1);
-            });
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -39,7 +39,5 @@ namespace LoLPerformanceAnalysisAPI.Controllers
     
         public async Task<string> GetChampionRotations(string platform) =>
             await Requests.GetChampionRotations(platform);
-
-        
     }
 }

@@ -29,12 +29,12 @@ namespace LoLPerformanceAnalysisAPI.Models {
             ClientSummoner.Remove(ConnectionId);
         }
 
-        public string accountId;  // Encrypted account ID. Max length 56 characters.
-        public int profileIconId; // ID of the summoner icon associated with the summoner.
-        public long revisionDate; // summoner was last modified specified as epoch milliseconds. The following events will update this timestamp: profile icon change, playing the tutorial or advanced tutorial, finishing a game, summoner name change
-        public string name;       // Summoner name.
-        public string id;         // Encrypted summoner ID. Max length 63 characters.
-        public string puuid;      // Encrypted PUUID. Exact length of 78 characters.
-        public long summonerLevel;// Summoner level associated with the summoner.
+        public string accountId { get; set; }   // Encrypted account ID. Max length 56 characters.
+        public int profileIconId { get; set; }  // ID of the summoner icon associated with the summoner.
+        public long revisionDate { get; set; }  // summoner was last modified specified as epoch milliseconds. The following events will update this timestamp: profile icon change, playing the tutorial or advanced tutorial, finishing a game, summoner name change
+        public string name { get; set; }        // Summoner name.
+        public string id { get; set; }          // Encrypted summoner ID. Max length 63 characters.
+        public string puuid { get; set; }       // Encrypted PUUID. Exact length of 78 characters.
+        public long summonerLevel { get; set; } // Summoner level associated with the summoner.
     }
 }
