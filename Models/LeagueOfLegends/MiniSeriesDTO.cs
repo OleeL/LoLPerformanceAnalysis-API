@@ -4,7 +4,7 @@ namespace LoLPerformanceAnalysisAPI.Models {
 
     public class MiniSeriesDTO {
 
-        #region Attributes
+        #region [Attributes]
         public int losses { get; set; }
         public string progress { get; set; }
         public int target { get; set; }

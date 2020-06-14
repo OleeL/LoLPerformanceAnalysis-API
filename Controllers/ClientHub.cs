@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.SignalR;
 using LoLPerformanceAnalysisAPI.Models;
 using Newtonsoft.Json;
 using static LoLPerformanceAnalysisAPI.Models.Summoner;
+using System.Collections.Generic;
 
 namespace LoLPerformanceAnalysisAPI.Controllers
 {
@@ -15,6 +16,7 @@ namespace LoLPerformanceAnalysisAPI.Controllers
 
     public class ClientHub : Hub<IClientHub>
     {
+        #region [rgba(126, 75, 27, 0.15)]
         public static LoLRequest Requests = new LoLRequest();
 
         public override async Task OnConnectedAsync() =>
@@ -24,11 +26,14 @@ namespace LoLPerformanceAnalysisAPI.Controllers
             await base.OnDisconnectedAsync(exception);
             TryRemoveSummoner(Context.ConnectionId);
         }
+        #endregion
 
+        #region [ClientGets]
         public async Task<Summoner> GetSummoner(string summonerName, string serverRegion){
             var summoner = TryGetSummoner(Context.ConnectionId);
             if (summoner?.name == summonerName) return summoner;
             summoner = JsonConvert.DeserializeObject<Summoner>(await Requests.GetSummonerId(summonerName, serverRegion));
+            summoner.leagueEntry = JsonConvert.DeserializeObject<List<LeagueEntryDTO>>(await Requests.GetSummonerLeagueEntry(summoner.id, serverRegion));
             TryStoreSummoner(Context.ConnectionId, summoner);
             return summoner;
         }
@@ -38,5 +43,7 @@ namespace LoLPerformanceAnalysisAPI.Controllers
     
         public async Task<string> GetChampionRotations(string platform) =>
             await Requests.GetChampionRotations(platform);
+        
+        #endregion
     }
 }

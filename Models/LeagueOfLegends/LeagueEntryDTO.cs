@@ -4,7 +4,7 @@ namespace LoLPerformanceAnalysisAPI.Models {
 
     public class LeagueEntryDTO {
 
-        #region Attributes
+        #region [Attributes]
         public string leagueId { get; set; }
         public string summonerId { get; set; }    //	Player's encrypted summonerId.
         public string summonerName { get; set; }
