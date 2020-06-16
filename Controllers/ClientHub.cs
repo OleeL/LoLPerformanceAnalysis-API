@@ -34,6 +34,7 @@ namespace LoLPerformanceAnalysisAPI.Controllers
             if (summoner?.name == summonerName) return summoner;
             summoner = JsonConvert.DeserializeObject<Summoner>(await Requests.GetSummonerId(summonerName, serverRegion));
             summoner.leagueEntry = JsonConvert.DeserializeObject<List<LeagueEntryDTO>>(await Requests.GetSummonerLeagueEntry(summoner.id, serverRegion));
+            summoner.matchList = JsonConvert.DeserializeObject<MatchlistDTO>(await Requests.GetMatchHistory(summoner.accountId, serverRegion));
             TryStoreSummoner(Context.ConnectionId, summoner);
             return summoner;
         }

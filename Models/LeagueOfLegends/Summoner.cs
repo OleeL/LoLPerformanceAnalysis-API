@@ -17,6 +17,7 @@ namespace LoLPerformanceAnalysisAPI.Models {
         public string puuid { get; set; }       // Encrypted PUUID. Exact length of 78 characters.
         public long summonerLevel { get; set; } // Summoner level associated with the summoner.
         public List<LeagueEntryDTO>? leagueEntry { get; set; }
+        public MatchlistDTO? matchList { get; set; }
         #endregion
         
         #region [Methods]

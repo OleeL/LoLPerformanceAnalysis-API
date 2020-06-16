@@ -35,6 +35,9 @@ namespace LoLPerformanceAnalysisAPI.Models
         public async Task<string> GetSummonerLeagueEntry(string id, string serverRegion) =>
             await Request.PlatformGet("/lol/league/v4/entries/by-summoner/"+id, ClientPlatformToPlatform(serverRegion));
 
+        public async Task<string> GetMatchHistory(string id, string serverRegion) => // accountId, region e.g. EUW1
+            await Request.PlatformGet("/lol/match/v4/matchlists/by-account/"+id, ClientPlatformToPlatform(serverRegion));
+
         public async Task<string> GetChampion(string name) =>
             await Request.DataDragonGet(name);
 
