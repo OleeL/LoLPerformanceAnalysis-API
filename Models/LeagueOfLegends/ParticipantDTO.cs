@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace LoLPerformanceAnalysisAPI.Models {
 
-    public class ParticipantIdentityDTO {
+    public class ParticipantDTO {
 
         #region [Attributes]
         public int participantId { get; set; } // 
