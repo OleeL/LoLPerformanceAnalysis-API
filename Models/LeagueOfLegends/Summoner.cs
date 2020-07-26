@@ -1,13 +1,10 @@
 using System.Collections.Generic;
 
-namespace LoLPerformanceAnalysisAPI.Models {
+namespace LoLPerformanceAnalysisAPI.Models
+{
 
-    public class Summoner {
-        #region [StaticAttributes]
-        public static Dictionary<string, Summoner> ClientSummoner = new Dictionary<string, Summoner>();
-        public static bool ClientSummonerExists(string id) => ClientSummoner.ContainsKey(id) && ClientSummoner[id] != null;
-        #endregion
-
+    public class Summoner
+    {
         #region [Attributes]
         public string accountId { get; set; }   // Encrypted account ID. Max length 56 characters.
         public int profileIconId { get; set; }  // ID of the summoner icon associated with the summoner.
@@ -19,11 +16,12 @@ namespace LoLPerformanceAnalysisAPI.Models {
         public List<LeagueEntryDTO>? leagueEntry { get; set; }
         public MatchlistDTO? matchList { get; set; }
         #endregion
-        
+
         #region [Methods]
         public static void TryStoreSummoner(string ConnectionId, Summoner summoner)
         {
-            if (!ClientSummoner.ContainsKey(ConnectionId)) {
+            if (!ClientSummoner.ContainsKey(ConnectionId))
+            {
                 ClientSummoner.Add(ConnectionId, summoner);
                 return;
             }
@@ -44,5 +42,15 @@ namespace LoLPerformanceAnalysisAPI.Models {
             ClientSummoner.Remove(ConnectionId);
         }
         #endregion
+
+        #region [StaticAttributes]
+        public static Dictionary<string, Summoner> ClientSummoner = new Dictionary<string, Summoner>();
+        #endregion
+
+        #region [StaticMethods]
+        public static bool ClientSummonerExists(string id) =>
+            ClientSummoner.ContainsKey(id) && ClientSummoner[id] != null;
+        #endregion
+
     }
 }

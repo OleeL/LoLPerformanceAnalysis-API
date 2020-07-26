@@ -16,7 +16,7 @@ namespace LoLPerformanceAnalysisAPI.Controllers
 
     public class ClientHub : Hub<IClientHub>
     {
-        #region [rgba(126, 75, 27, 0.15)]
+        #region [rgba(126, 75, 27, 0.15)] Other
         public static LoLRequest Requests = new LoLRequest();
 
         public override async Task OnConnectedAsync() =>
@@ -30,8 +30,9 @@ namespace LoLPerformanceAnalysisAPI.Controllers
 
         #region [ClientGets]
         public async Task<Summoner> GetSummoner(string summonerName, string serverRegion){
+            if (summonerName == null || summonerName == "") return null;
             var summoner = TryGetSummoner(Context.ConnectionId);
-            if (summoner?.name == summonerName) return summoner;
+            if (summoner != null || summoner?.name == summonerName) return summoner;
             summoner = JsonConvert.DeserializeObject<Summoner>(await Requests.GetSummonerId(summonerName, serverRegion));
             summoner.leagueEntry = JsonConvert.DeserializeObject<List<LeagueEntryDTO>>(await Requests.GetSummonerLeagueEntry(summoner.id, serverRegion));
             summoner.matchList = JsonConvert.DeserializeObject<MatchlistDTO>(await Requests.GetMatchHistory(summoner.accountId, serverRegion));
