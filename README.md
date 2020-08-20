@@ -5,7 +5,7 @@ API for the client. This will make requests to riot's API. This isn't endorsed b
 
 Requires [.NET Core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1)
 
-Create two files in your root dir and put your Riot API key in them
+Create two files in your project root dir and put your Riot API key in them
 
 `./appsettings.Development.json`
 ```json
