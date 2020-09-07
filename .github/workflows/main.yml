@@ -1,4 +1,4 @@
-name: Build Client
+name: Build API
 
 on:
   push:
