@@ -42,6 +42,7 @@ namespace LoLPerformanceAnalysisAPI
                 builder.AllowAnyMethod()
                        .AllowAnyHeader()
                        .WithOrigins("http://localhost:3000")
+                       .WithOrigins("https://localhost:3000")
                        .AllowCredentials();
             }));
 
